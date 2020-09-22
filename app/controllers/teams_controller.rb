@@ -7,6 +7,11 @@ class TeamsController < ApplicationController
     html_file = open(url).read
     html_doc = Nokogiri::HTML(html_file)
 
-    @teams = html_doc.search(".wikitable", ".a", "title")
+    @teams = html_doc.css(".wikitable").css("a")
+    year_array = []
+    @teams.each do |team|
+      year = team.attribute("title").text
+      year_array << year
+    end
   end
 end
