@@ -10,8 +10,9 @@ class TeamsController < ApplicationController
     @teams = html_doc.css(".wikitable").css("a")
     year_array = []
     @teams.each do |team|
-      year = team.attribute("title").text
+      year = team.children.text
       year_array << year
+    raise
     end
   end
 end
